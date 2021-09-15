@@ -16,7 +16,7 @@ cd <this_repo>
 python3 game.py
 ```
 
-You can move to the `Chatterbot` branch of this repo.
+You can move to the `FuzzyMatching` branch of this repo.
 
 
 # Un Jeu pour la Planète - Des chatbots en Python
