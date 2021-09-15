@@ -7,13 +7,14 @@ class Player():
 
 class Scene():
     """docstring for Scene"""
-    def __init__(self, intro, keywords, player=None, condition=None, success=None):
+    def __init__(self, intro, keywords, player=None, condition=None, success=None, fail=None):
         super(Scene, self).__init__()
         self.intro = intro
         self.keywords = keywords
         self.player = player
         self.condition = condition
         self.success = success
+        self.fail = fail
 
     def run(self):
         print("\n\n\n\n")
@@ -22,6 +23,8 @@ class Scene():
         if self.player and self.condition:
             if self.condition in self.player.inventory:
                 return self.success
+            else:
+                return self.fail
         while True:
             reponse = input(">").lower()
             if reponse in self.keywords:
@@ -61,11 +64,16 @@ scenes = {
         keywords=['départ','fourmi','forêt'],
     ),
     'forêt': Scene(
-        intro="Vous vous balladez en forêt...",
+        intro="Vous vous balladez en forêt, vous vous appercevez que des arbres ont disparu.\nNous pourrions peut-être en planter.",
+        keywords=['départ','planter'],
+    ),
+    'planter': Scene(
+        intro="...",
         keywords=['départ'],
         player=player,
         condition='graines',
-        success='3ND'
+        success='3ND',
+        fail='forêt'
     ),
     '3ND': Scene(
         intro="Vous avez planté les graines. Bien joué!",
