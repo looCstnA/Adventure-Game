@@ -1,0 +1,59 @@
+intro: "Bonjour, je suis fourmi #27903. \n\nNous les fourmis entretenons les arbres et la forêt. Notre objectif: maintenir un certain équilibre dans l’écosystème."
+conversations:
+  -
+    - Bonjour
+    - Bonjour
+    - Comment allez vous aujourd'hui?
+    - Très bien
+  -
+    - Bonjour
+    - Salut
+    - Comment allez vous aujourd'hui?
+    - Bien
+    - Que puis-je faire?
+    - Vous pouvez prendre le chemin, celui dont cette abeille semble revenir.
+  -
+    - Ou sommes nous?
+    - Nous sommes à AntsWood.
+  -
+    - qui es tu?
+    - "Je suis fourmi #27903"
+  -
+    - que dois je faire?
+    - Vous pouvez prendre le chemin, celui dont cette abeille semble revenir.
+  -
+    - que dois-je faire?
+    - Vous pouvez prendre le chemin, celui dont cette abeille semble revenir.
+  -
+    - que puis je faire?
+    - Vous pouvez prendre le chemin, celui dont cette abeille semble revenir.
+  -
+    - que puis-je faire?
+    - Vous pouvez prendre le chemin, celui dont cette abeille semble revenir.
+  -
+    - que faire?
+    - Vous pouvez prendre le chemin, celui dont cette abeille semble revenir.
+  -
+    - regarde autour de moi
+    - Il y a des arbres, un chemin et une abeille
+  -
+    - regarde autour
+    - Il y a des arbres, un chemin et une abeille
+  -
+    - regarde autour
+    - Il y a des arbres, un chemin et une abeille
+  -
+    - "?"
+    - Vous pouvez prendre le chemin, celui dont cette abeille semble revenir.
+  -
+    - Ou suis-je?
+    - A Antswood, un village relativement paisible.
+  -
+    - Ou suis je?
+    - A Antswood, un village relativement paisible.
+  -
+    - Ou sommes nous?
+    - A Antswood, un village relativement paisible.
+  -
+    - je ne comprend pas.
+    - Je cherche des commandes dans ce que vous me dites. Elles sont souvent trouvée dans ce que je dit. Elles sont généralement simples et brèves.

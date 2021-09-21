@@ -19,18 +19,22 @@ python3 game.py
 ```
 
 
-## Fuzzy Matching
+## Chatterbot
 
-- [Python FuzzyWuzzy](https://pypi.org/project/fuzzywuzzy/)
+- [Chatterbot]()
+- [Chatterbot-corpus](https://github.com/gunthercox/chatterbot-corpus)
 
-Before jumping into the (now almosrt intelligent) game. Have a look at what we are doing in the `test_algos.py`
+Before jumping into the (now almosrt intelligent) game. Have a look at what we are doing in the `test_bot.py`
 
 
-Afterwards, you can move to the `Chatterbot` branch of this repo.
+### TODO:
 
-```
-git checkout -b Chatterbot
-```
+conversations/
+
+- abeille et abeille2
+- foret
+- planter
+- fin
 
 
 # Un Jeu pour la Planète - Des chatbots en Python

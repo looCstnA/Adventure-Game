@@ -1,0 +1,58 @@
+intro: "Bonjour visiteurs, bienvenue à Antswood. \n\nUne forêt où cohabitent différentes espèces (comme ici une fourmi et une abeille) qui, ensemble, forment un écosystème complexe rempli de personnages, d’actions (et réactions), d’intrigues et de challenges à accomplir."
+conversations:
+  -
+    - bonjour
+    - Comment allez vous aujourd'hui?
+    - Très bien
+    - Que puis-je faire?
+    - Sur votre droite, une fourmi vous regarde, l'air enjouée. Sur votre gauche se trouve une abeille qui semble revenir de la forêt. Plus loin, un chemin.
+  -
+    - bonjour
+    - Comment allez vous aujourd'hui?
+    - Très bien
+    - Sur votre droite, une fourmi vous regarde, l'air enjouée. Sur votre gauche se trouve une abeille qui semble revenir de la forêt. Plus loin, un chemin.
+  -
+    - ou sommes nous?
+    - Nous sommes à AntsWood, un village constituté principalement de fourmis, bien que d'autres insectes et animaux existent en cet endroit.
+  -
+    - qui es tu?
+    - Je suis AntBot, j'assiste les habitants et visiteurs d'AntsWood.
+  -
+    - que dois je faire?
+    - Sur votre droite, une fourmi vous regarde, l'air enjouée. Sur votre gauche se trouve une abeille qui semble revenir de la forêt. Plus loin, un chemin.
+  -
+    - que dois-je faire?
+    - Sur votre droite, une fourmi vous regarde, l'air enjouée. Sur votre gauche se trouve une abeille qui semble revenir de la forêt. Plus loin, un chemin.
+  -
+    - que puis je faire?
+    - Sur votre droite, une fourmi vous regarde, l'air enjouée. Sur votre gauche se trouve une abeille qui semble revenir de la forêt. Plus loin, un chemin.
+  -
+    - que puis-je faire?
+    - Sur votre droite, une fourmi vous regarde, l'air enjouée. Sur votre gauche se trouve une abeille qui semble revenir de la forêt. Plus loin, un chemin.
+  -
+    - que faire?
+    - Sur votre droite, une fourmi vous regarde, l'air enjouée. Sur votre gauche se trouve une abeille qui semble revenir de la forêt. Plus loin, un chemin.
+  -
+    - regarde autour de moi
+    - Sur votre droite, une fourmi vous regarde, l'air enjouée. Sur votre gauche se trouve une abeille qui semble revenir de la forêt. Plus loin, un chemin.
+  -
+    - regarde autour
+    - Sur votre droite, une fourmi vous regarde, l'air enjouée. Sur votre gauche se trouve une abeille qui semble revenir de la forêt. Plus loin, un chemin.
+  -
+    - regarde autour
+    - Sur votre droite, une fourmi vous regarde, l'air enjouée. Sur votre gauche se trouve une abeille qui semble revenir de la forêt. Plus loin, un chemin.
+  -
+    - "?"
+    - Sur votre droite, une fourmi vous regarde, l'air enjouée. Sur votre gauche se trouve une abeille qui semble revenir de la forêt. Plus loin, un chemin.
+  -
+    - Ou suis-je?
+    - A AntsWood, un village relativement paisible.
+  -
+    - Ou suis je?
+    - A AntsWood, un village relativement paisible.
+  -
+    - Ou sommes nous?
+    - A AntsWood, un village relativement paisible.
+  -
+    - je ne comprend pas.
+    - Je cherche des commandes dans ce que vous me dites. Elles sont souvent trouvée dans ce que je dit. Elles sont généralement simples et brèves.

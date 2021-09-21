@@ -1,5 +1,19 @@
+from chatterbot import ChatBot
+from chatterbot.trainers import ListTrainer
 from fuzzywuzzy import fuzz, process
+from yaml import load
 
+# class Scene(ChatBot):
+#     """An augmented ChatBot"""
+#     def __init__(self, name):
+#         super().__init__(
+#             name, 
+#             read_only=True,
+#             storage_adapter='chatterbot.storage.SQLStorageAdapter',
+#             database_uri='sqlite:///'+name+'.sqlite3'
+#         )
+
+        
 def extract_command(text, keys_dict):
     pack = []
     for k, v in keys_dict.items():
@@ -20,11 +34,22 @@ class Player():
         self.inventory = []
 
 
-class Scene():
+class Scene(ChatBot):
     """docstring for Scene"""
-    def __init__(self, intro, keywords, keys_dict, player=None, condition=None, success=None, fail=None):
-        super(Scene, self).__init__()
-        self.intro = intro
+    def __init__(self, name, keywords, keys_dict, player=None, condition=None, success=None, fail=None):
+        super(Scene, self).__init__(
+            name, 
+            read_only=True,
+            storage_adapter='chatterbot.storage.SQLStorageAdapter',
+            database_uri='sqlite:///'+name+'.sqlite3'
+        )
+        trainer = ListTrainer(self, show_training_progress=False)
+        
+        data = load(open("conversations/"+name+".yaml", 'r'))
+        for conv in data['conversations']:
+            trainer.train(conv)
+        
+        self.intro = data['intro']
         self.keywords = keywords
         self.keys_dict = {k: keys_dict[k] for k in keywords} # only keys given
         self.player = player
@@ -46,6 +71,9 @@ class Scene():
             cmd = extract_command(reponse, self.keys_dict)
             if cmd:
                 return cmd
+            else:
+                # chatbot.get_response
+                print(self.get_response(reponse))
 
 
 class Giveaway():
@@ -67,40 +95,46 @@ SCENES_KEYS = {
     'fourmi':['parler à la fourmi','saluer la fourmi'],
     'abeille':["parler à l abeille", 'saluer l abaille'],
     'graines':['demander les graines à l abeille','puis je avoir les graines','donne moi les graines'],
-    'forêt':['à la forêt','vers la foret'],
+    'forêt':['à la forêt','vers la foret','prendre le chemin','prendre le chemin vers la forêt'],
     'planter':['planter les graines','utiliser les graines']
 }
 
 player = Player()
 scenes = {
     'départ': Scene(
-        intro="Bonjour visiteurs, bienvenue à Antswood.\n\nUne forêt où cohabitent différentes espèces (comme ici une fourmi et une abeille) qui, ensemble, forment un écosystème complexe rempli de personnages, d’actions (et réactions), d’intrigues et de challenges à accomplir.",
+        name='antswood',
+        # intro="Bonjour visiteurs, bienvenue à Antswood.\n\nUne forêt où cohabitent différentes espèces (comme ici une fourmi et une abeille) qui, ensemble, forment un écosystème complexe rempli de personnages, d’actions (et réactions), d’intrigues et de challenges à accomplir.",
         keywords=['fourmi','abeille','forêt'],
         keys_dict=SCENES_KEYS
     ),
     'fourmi':Scene(
-        intro="Bonjour, je suis fourmi #27903. \n\nNous les fourmis entretenons les arbres et la forêt. Notre objectif: maintenir un certain équilibre dans l’écosystème.",
+        'fourmi',
+        # intro="Bonjour, je suis fourmi #27903. \n\nNous les fourmis entretenons les arbres et la forêt. Notre objectif: maintenir un certain équilibre dans l’écosystème.",
         keywords=['départ','abeille','forêt'],
         keys_dict=SCENES_KEYS
     ),
     'abeille': Scene(
-        intro="Bonjour, je suis une abeille. Nous nous chargeons de polliniser les fleurs. Notre objectif: trouver des fleurs. Parfois nous y trouvons des graines :)",
+        'abeille',
+        # intro="Bonjour, je suis une abeille. Nous nous chargeons de polliniser les fleurs. Notre objectif: trouver des fleurs. Parfois nous y trouvons des graines :)",
         keywords=['départ','fourmi','forêt','graines'],
         keys_dict=SCENES_KEYS
     ),
     'graines': Giveaway('graines',player,'abeille2'),
     'abeille2': Scene(
-        intro="Voici, prenez ces graines. Elles vous surront sûrement plus utiles.",
+        name='abeille2',
+        # intro="Voici, prenez ces graines. Elles vous surront sûrement plus utiles.",
         keywords=['départ','fourmi','forêt'],
         keys_dict=SCENES_KEYS
     ),
     'forêt': Scene(
-        intro="Vous vous balladez en forêt...",
+        name="foret",
+        # intro="Vous vous balladez en forêt...",
         keywords=['départ','planter'],
         keys_dict=SCENES_KEYS,
     ),
     'planter': Scene(
-        intro="...",
+        name='planter',
+        # intro="...",
         keywords=['départ'],
         keys_dict=SCENES_KEYS,
         player=player,
@@ -109,7 +143,8 @@ scenes = {
         fail='forêt'
     ),
     '3ND': Scene(
-        intro="Bien joué!",
+        name='fin',
+        # intro="Bien joué!",
         keywords=['départ'],
         keys_dict=SCENES_KEYS
     )
