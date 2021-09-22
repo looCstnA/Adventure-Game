@@ -2,19 +2,9 @@ from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 from fuzzywuzzy import fuzz, process
 from yaml import load
-
-# class Scene(ChatBot):
-#     """An augmented ChatBot"""
-#     def __init__(self, name):
-#         super().__init__(
-#             name, 
-#             read_only=True,
-#             storage_adapter='chatterbot.storage.SQLStorageAdapter',
-#             database_uri='sqlite:///'+name+'.sqlite3'
-#         )
-
-        
+      
 def extract_command(text, keys_dict):
+    """Extract commands from text using fuzzy (partial) matching"""
     pack = []
     for k, v in keys_dict.items():
         cmd = process.extract(text, v, scorer=fuzz.partial_ratio, limit=1)
@@ -28,7 +18,7 @@ def extract_command(text, keys_dict):
 
 
 class Player():
-    """docstring for Player"""
+    """Une simple classe"""
     def __init__(self):
         super(Player, self).__init__()
         self.inventory = []
@@ -47,6 +37,7 @@ class Scene(ChatBot):
         
         data = load(open("conversations/"+name+".yaml", 'r'))
         for conv in data['conversations']:
+            print(conv)
             trainer.train(conv)
         
         self.intro = data['intro']
@@ -68,12 +59,15 @@ class Scene(ChatBot):
                 return self.fail
         while True:
             reponse = input(">").lower()
-            cmd = extract_command(reponse, self.keys_dict)
-            if cmd:
-                return cmd
+            if reponse == "?":
+                print(self.intro)
             else:
-                # chatbot.get_response
-                print(self.get_response(reponse))
+                cmd = extract_command(reponse, self.keys_dict)
+                if cmd:
+                    return cmd
+                else:
+                    # chatbot.get_response
+                    print(self.get_response(reponse))
 
 
 class Giveaway():
@@ -103,38 +97,32 @@ player = Player()
 scenes = {
     'départ': Scene(
         name='antswood',
-        # intro="Bonjour visiteurs, bienvenue à Antswood.\n\nUne forêt où cohabitent différentes espèces (comme ici une fourmi et une abeille) qui, ensemble, forment un écosystème complexe rempli de personnages, d’actions (et réactions), d’intrigues et de challenges à accomplir.",
         keywords=['fourmi','abeille','forêt'],
         keys_dict=SCENES_KEYS
     ),
     'fourmi':Scene(
         'fourmi',
-        # intro="Bonjour, je suis fourmi #27903. \n\nNous les fourmis entretenons les arbres et la forêt. Notre objectif: maintenir un certain équilibre dans l’écosystème.",
         keywords=['départ','abeille','forêt'],
         keys_dict=SCENES_KEYS
     ),
     'abeille': Scene(
         'abeille',
-        # intro="Bonjour, je suis une abeille. Nous nous chargeons de polliniser les fleurs. Notre objectif: trouver des fleurs. Parfois nous y trouvons des graines :)",
         keywords=['départ','fourmi','forêt','graines'],
         keys_dict=SCENES_KEYS
     ),
     'graines': Giveaway('graines',player,'abeille2'),
     'abeille2': Scene(
         name='abeille2',
-        # intro="Voici, prenez ces graines. Elles vous surront sûrement plus utiles.",
         keywords=['départ','fourmi','forêt'],
         keys_dict=SCENES_KEYS
     ),
     'forêt': Scene(
         name="foret",
-        # intro="Vous vous balladez en forêt...",
         keywords=['départ','planter'],
         keys_dict=SCENES_KEYS,
     ),
     'planter': Scene(
         name='planter',
-        # intro="...",
         keywords=['départ'],
         keys_dict=SCENES_KEYS,
         player=player,
@@ -144,7 +132,6 @@ scenes = {
     ),
     '3ND': Scene(
         name='fin',
-        # intro="Bien joué!",
         keywords=['départ'],
         keys_dict=SCENES_KEYS
     )
