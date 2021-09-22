@@ -8,6 +8,10 @@ Three classes:
 - Player: that represents our user.
 - Giveway: represents when the user receives something.
 
+One Function:
+
+- extract commands
+
 You can try it with:
 
 ```
@@ -31,8 +35,3 @@ Afterwards, you can move to the `Chatterbot` branch of this repo.
 ```
 git checkout -b Chatterbot
 ```
-
-
-# Un Jeu pour la Planète - Des chatbots en Python
-
-TODO
